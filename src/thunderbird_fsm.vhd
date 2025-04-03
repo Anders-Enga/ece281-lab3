@@ -104,8 +104,7 @@ entity thunderbird_fsm is
         i_clk, i_reset  : in    std_logic;
         i_left, i_right : in    std_logic;
         o_lights_L      : out   std_logic_vector(2 downto 0);
-        o_lights_R      : out   std_logic_vector(2 downto 0);
-        o_f_S    : out std_logic_vector(2 downto 0)
+        o_lights_R      : out   std_logic_vector(2 downto 0)
     );
 end thunderbird_fsm;
 
@@ -168,6 +167,4 @@ begin
         end if;
     end process register_proc;
 	-----------------------------------------------------	
-	
-	o_f_S <= f_S;  			
 end thunderbird_fsm_arch;

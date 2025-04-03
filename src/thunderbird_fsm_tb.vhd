@@ -61,8 +61,7 @@ architecture test_bench of thunderbird_fsm_tb is
             i_clk, i_reset  : in    std_logic;
             i_left, i_right : in    std_logic;
             o_lights_L      : out   std_logic_vector(2 downto 0);
-            o_lights_R      : out   std_logic_vector(2 downto 0);
-            o_f_S    : out std_logic_vector(2 downto 0)
+            o_lights_R      : out   std_logic_vector(2 downto 0)
         );
 	end component thunderbird_fsm;
 
@@ -94,8 +93,7 @@ begin
 	   i_left => w_left,
 	   i_right => w_right,
 	   o_lights_L => w_lights_L,
-	   o_lights_R => w_lights_R,
-	   o_f_S => f_S
+	   o_lights_R => w_lights_R
 	);
 	-----------------------------------------------------
 	
