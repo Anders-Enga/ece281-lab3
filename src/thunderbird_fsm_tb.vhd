@@ -82,7 +82,7 @@ architecture test_bench of thunderbird_fsm_tb is
 	signal f_S_next : std_logic_vector(2 downto 0) :="000";
 	
 	-- constants
-	constant k_clk_period : time := 10 ps;
+	constant k_clk_period : time := 10 ns;
 	
 	
 begin
@@ -178,6 +178,16 @@ begin
 		  assert w_lights_L = "111" report "left bad on hazard repeat" severity failure;
 		  assert w_lights_R = "111" report "right bad on hazard repeat" severity failure;
 		-- Switch right off and move back to off state
+		w_left <= '0'; w_right <= '0'; wait for k_clk_period;
+		
+		-- Test changing signal in middle of a light cycle
+		w_right <= '1'; wait for k_clk_period;
+		w_right <= '0'; w_left <= '1'; wait for k_clk_period;
+		  assert w_lights_L = "000" report "bad left on right blinker" severity failure;
+		  assert w_lights_R = "011" report "bad right after 2 period on changing signal" severity failure;
+	    wait for k_clk_period;
+		  assert w_lights_L = "000" report "bad left on right blinker" severity failure;
+		  assert w_lights_R = "111" report "bad right after 3 period on changing signal" severity failure;
 		w_left <= '0'; w_right <= '0';
 		
 		wait;
